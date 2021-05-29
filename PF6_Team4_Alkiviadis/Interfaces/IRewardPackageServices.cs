@@ -10,11 +10,11 @@ namespace PF6_Team4_Alkiviadis.Interfaces
 {
     public interface IRewardPackageServices
     {
-        Task<Result<List<RewardPackage>>> GetRewardPackageAsync();
+        Task<Result<List<RewardPackageOptions>>> GetAllRewardPackagesAsync();
 
-        Task<Result<RewardPackage>> CreateRewardPackageAsync(RewardPackageOptions rewardpackageoptions);
+        Task<Result<RewardPackageOptions>> CreateRewardPackageAsync(RewardPackageOptions rewardpackageoptions);
 
-        Task<Result<RewardPackage>> GetRewardPackageByIdAsync(int id);
+        Task<Result<RewardPackageOptions>> GetRewardPackageByIdAsync(int id);
 
         Task<Result<int>> DeleteRewardPackageByIdAsync(int id);
     }
