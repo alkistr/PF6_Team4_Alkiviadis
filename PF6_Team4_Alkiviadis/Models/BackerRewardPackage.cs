@@ -7,8 +7,8 @@ namespace PF6_Team4_Alkiviadis.Models
 {
     public class BackerRewardPackage
     {
-        int BackerRewardPackageId { get; set; }
-        int UserId { get; set; }
-        int RewardPackageId { get; set; }        
+        public int BackerRewardPackageId { get; set; }
+        public User user { get; set; }
+        public RewardPackage rewardpackage { get; set; }        
     }
 }

@@ -7,9 +7,10 @@ namespace PF6_Team4_Alkiviadis.Models
 {
     public class RewardPackage
     {
-        int RewardPackageId { get; set; }
-        decimal MaxAmountRoGetReward { get; set; }
-        string RewardDescription { get; set; }
-        DateTime CreationDate { get; set; }
+        public int RewardPackageId { get; set; }
+        public decimal MaxAmountRoGetReward { get; set; }
+        public string RewardDescription { get; set; }
+        public DateTime CreationDate { get; set; }
     }
+
 }

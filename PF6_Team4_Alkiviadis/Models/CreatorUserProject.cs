@@ -7,8 +7,8 @@ namespace PF6_Team4_Alkiviadis.Models
 {
     public class CreatorUserProject
     {
-        int CreatorUserProjectId { get; set; }
-        int UserId { get; set; }
-        int ProjectId { get; set; }
+        public int CreatorUserProjectId { get; set; }
+        public User user { get; set; }
+        public Project project { get; set; }
     }
 }

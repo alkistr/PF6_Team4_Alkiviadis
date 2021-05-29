@@ -7,8 +7,8 @@ namespace PF6_Team4_Alkiviadis.Models.Options
 {
     public class BackerRewardPackageOptions
     {
-        int BackerRewardPackageId { get; set; }
-        int UserId { get; set; }
-        int RewardPackageId { get; set; }
+        public int BackerRewardPackageId { get; set; }
+        public int UserId { get; set; }
+        public int RewardPackageId { get; set; }
     }
 }

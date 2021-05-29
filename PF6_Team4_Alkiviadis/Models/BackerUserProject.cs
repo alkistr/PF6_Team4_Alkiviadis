@@ -7,9 +7,9 @@ namespace PF6_Team4_Alkiviadis.Models
 {
     public class BackerUserProject
     {
-        int BackerUserProjectId { get; set; }
-        int UserId { get; set; }
-        int ProjectId { get; set; }
-        decimal AmountDonated { get; set; }
+        public int Id { get; set; }
+        public User user { get; set; }
+        public Project project { get; set; }
+        public decimal AmountDonated { get; set; }
     }
 }

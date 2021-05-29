@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using PF6_Team4_Alkiviadis.Models;
+using PF6_Team4_Alkiviadis.Models.Options;
 
 namespace PF6_Team4_Alkiviadis.Interfaces
 {
     public interface IRewardPackageServices
     {
-        public class CreateRewardPackage;
-        public class ReadRewardPackage;
-        public class UpdateRewardPackage;
-        public class DeleteRewardPackage;
+        Task<Result<List<RewardPackage>>> GetRewardPackageAsync();
 
+        Task<Result<RewardPackage>> CreateRewardPackageAsync(RewardPackageOptions rewardpackageoptions);
+
+        Task<Result<RewardPackage>> GetRewardPackageByIdAsync(int id);
+
+        Task<Result<int>> DeleteRewardPackageByIdAsync(int id);
     }
 }
+

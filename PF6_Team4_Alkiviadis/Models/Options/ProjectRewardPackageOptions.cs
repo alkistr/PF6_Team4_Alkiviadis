@@ -7,8 +7,8 @@ namespace PF6_Team4_Alkiviadis.Models.Options
 {
     public class ProjectRewardPackageOptions
     {
-        int ProjectRewardPackageId { get; set; }
-        int RewardPackageId { get; set; }
-        int ProjectId { get; set; }
+        public int ProjectRewardPackageId { get; set; }
+        public int RewardPackageId { get; set; }
+        public int ProjectId { get; set; }
     }
 }

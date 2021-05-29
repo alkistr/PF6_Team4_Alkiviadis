@@ -5,11 +5,8 @@ using System.Threading.Tasks;
 
 namespace PF6_Team4_Alkiviadis.Models
 {
-    public class ProjectRewardPackage
+    public class Project
     {
-        public int ProjectRewardPackageId { get; set; }
-        public int RewardPackageId { get; set; }
         public int ProjectId { get; set; }
-
     }
 }
