@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PF6_Team4_Alkiviadis.Models.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;

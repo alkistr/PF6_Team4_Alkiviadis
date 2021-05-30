@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PF6_Team4_Alkiviadis.Interfaces;
-using PF6_Team4_Alkiviadis.Services;
+using PF6_Team4_Core;
+using PF6_Team4_Core.DependencyInjections;
+using PF6_Team4_Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,9 @@ namespace PF6_Team4_Alkiviadis
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<IRewardPackageServices, RewardPackageService>();
+
+            services.AddPersistence(Configuration);
+            services.AddCore();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
