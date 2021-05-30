@@ -12,9 +12,9 @@ namespace PF6_Team4_Alkiviadis.Controllers
     {
         private readonly IRewardPackageServices _rewardpackageService;
 
-        public RewardPackageController(IRewardPackageServices customerService)
+        public RewardPackageController(IRewardPackageServices rewardpackageService)
         {
-            _rewardpackageService = customerService;
+            _rewardpackageService = rewardpackageService;
         }
 
         // GET: Customers
@@ -54,7 +54,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,VatNumber,Address")] RewardPackageOptions rewardpackageoptions)
+        public async Task<IActionResult> Create([Bind("Id,RewardPackageName,MaxAmountRoGetReward,RewardDescription,CreationDate")] RewardPackageOptions rewardpackageoptions)
         {
             if (ModelState.IsValid)
             {

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PF6_Team4_Alkiviadis.Interfaces;
+using PF6_Team4_Alkiviadis.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,7 @@ namespace PF6_Team4_Alkiviadis
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IRewardPackageServices, RewardPackageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
