@@ -12,11 +12,12 @@ namespace PF6_Team4_Core.Interfaces
     public interface IProjectServices
     {
         Task<Result<List<Project>>> GetAllProjectsAsync();
-        Task<Result<Project>> CreateProject(int userId, CreateProjectOptions createProjectOptions);
+        Task<Result<Project>> CreateProjectAsync(int userId, CreateProjectOptions createProjectOptions);
 
         Task<Result<Project>> GetProjectByIdAsync(int id);
         Task<Result<Project>> UptadeProjectAsync(int userId,int projectId, UpdateProjectOptions updadeProjectOptions);
-        Task<Result<Project>> SearchProjectAsync(SearchProjectOptions searchProjectOptions);
+        Task<Result<IQueryable>> SearchProjectAsync(SearchProjectOptions searchProjectOptions);
+
 
 
 

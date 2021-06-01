@@ -9,9 +9,14 @@ namespace PF6_Team4_Core.Models.Options.ProjectOptions
     public class UpdateProjectOptions
     {
         public int UserId { get; set; }
+
         public int ProjectId { get; set; }
+
         public string Title { get; set; }
+
         public string Description { get; set }
+
+        public int CategoryId { get; set;}
        
     }
 }

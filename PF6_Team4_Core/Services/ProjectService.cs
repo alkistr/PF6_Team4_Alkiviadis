@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace PF6_Team4_Core.Services
 {
-    class ProjectService : IProjectServices
+    public class ProjectService : IProjectServices
 
     {
-
         private readonly IApplicationDbContext _context;
         private readonly ILogger<ProjectService> _logger;
 
@@ -23,37 +22,132 @@ namespace PF6_Team4_Core.Services
             _context = context;
             _logger = logger;
         }
+
         public async Task<Result<Project>> CreateProjectAsync(int userId, CreateProjectOptions createProjectOptions)
-        {
+        {            
+            if (createProjectOptions == null)
+            {
+                return new Result<Project>(ErrorCode.BadRequest, "Null options.");
+            }
+
+            if (string.IsNullOrWhiteSpace(createProjectOptions.Title) ||
+              string.IsNullOrWhiteSpace(createProjectOptions.Description) ||  
+              createProjectOptions.CategoryId == null )
+            {
+                return new Result<Project>(ErrorCode.BadRequest, "Not all required Project options provided.");
+            }
 
             var newProject = new Project
             {
-                ProjectName = rewardpackageoptions.RewardPackageName,
-                MaxAmountRoGetReward = rewardpackageoptions.MaxAmountRoGetReward,
-                RewardDescription = rewardpackageoptions.RewardDescription,
-                CreationDate = DateTime.Now
+                Title = createProjectOptions.Title,
+                Description = createProjectOptions.Description,
+                Category = (Category)createProjectOptions.CategoryId
+
             };
-            await _context.Projects.AddAsync(project);
+
+            await _context.Projects.AddAsync(newProject);
+            
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+
+                return new Result<Project>(ErrorCode.InternalServerError, "Could not save the Project.");
+            }
+
+            return new Result<Project>
+            {
+                Data = newProject
+            };
         }
+
+        }
+
+
 
         public Task<Result<List<Project>>> GetAllProjectsAsync()
         {
-            throw new NotImplementedException();
+            var projects = await _context.projects.ToListAsync();
+
+            return new Result<List<Project>>
+            {
+                Data = projects.Count > 0 ? projects : new List<Project>()
+            };
         }
+
+
 
         public Task<Result<Project>> GetProjectByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+            {
+                return new Result<Project>(ErrorCode.BadRequest, "Id cannot be less than or equal to zero.");
+            }
+
+            var project = await _context
+                .Projects
+                .SingleOrDefaultAsync(_pro => _pro.ProjectId == id);
+
+            if (project == null)
+            {
+                return new Result<Project>(ErrorCode.NotFound, $"Project with id #{id} not found.");
+            }
+
+            return new Result<Project>
+            {
+                Data = project
+            };
         }
 
-        public Task<Result<Project>> SearchProjectAsync(SearchProjectOptions searchProjectOptions)
+
+
+        public Task<IQueryable<Project>> SearchProjectAsync(SearchProjectOptions searchProjectOptions)
         {
-            throw new NotImplementedException();
+            var query = await _context
+            .Projects
+            .AsQueryable();
+
+
+            if (!string.IsNullOrWhiteSpace(searchProjectOptions.SearchText))
+            {
+                query = query.Where(
+                        pj => pj.Title.ToLower().Contains(searchProjectOptions.SearchText.ToLower())
+                              ||
+                              pj.Description.ToLower()
+                                  .Contains(searchProjectOptions.SearchText.ToLower()));
+
+            }
+
+            if (searchProjectOptions.CategoryId != null)
+            {
+                query = query.Where(pj => searchProjectOptions.CategoryId.Contains((int) pj.Category));
+            }
+
+            return query.AsQueryable();
+
+
         }
+
 
         public Task<Result<Project>> UptadeProjectAsync(int userId, int projectId, UpdateProjectOptions updadeProjectOptions)
         {
-            throw new NotImplementedException();
+            if (!string.IsNullOrWhiteSpace(updateProjectOptions.Description))
+            {
+                project.Data.Description = updateProjectOptions.Description;
+            }
+            
+            if (!string.IsNullOrWhiteSpace(updateProjectOptions.Title))
+            {
+                project.Data.Title = updateProjectOptions.Title;
+            }
+
+
         }
+
+
+
     }
 }

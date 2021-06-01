@@ -10,6 +10,7 @@ namespace PF6_Team4_Core.Models.Options.ProjectOptions
 
     {
         public string SearchText{ get; set; }
+
         public int CategoryId { get; set; }
     }
 }
