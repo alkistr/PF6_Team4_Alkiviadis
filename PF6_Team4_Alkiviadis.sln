@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PF6_Team4_Alkiviadis", "PF6_Team4_Alkiviadis\PF6_Team4_Alkiviadis.csproj", "{C962D5B5-2A93-48EF-826A-6078D1D352CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PF6_Team4_Alkiviadis-dokimi-2", "PF6_Team4_Alkiviadis\PF6_Team4_Alkiviadis-dokimi-2.csproj", "{C962D5B5-2A93-48EF-826A-6078D1D352CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PF6_Team4_Core", "PF6_Team4_Core\PF6_Team4_Core.csproj", "{BB4BC87E-7123-4414-B1E2-D577E74ADA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PF6_Team4_Core", "PF6_Team4_Core\PF6_Team4_Core.csproj", "{BB4BC87E-7123-4414-B1E2-D577E74ADA58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

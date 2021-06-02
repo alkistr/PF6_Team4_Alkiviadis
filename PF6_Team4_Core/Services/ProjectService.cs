@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using PF6_Team4_Core.Interfaces;
 using PF6_Team4_Core.Models;
 using PF6_Team4_Core.Models.Options;
@@ -64,10 +65,7 @@ namespace PF6_Team4_Core.Services
             };
         }
 
-        }
-
-
-
+        
         public Task<Result<List<Project>>> GetAllProjectsAsync()
         {
             var projects = await _context.projects.ToListAsync();
@@ -103,8 +101,7 @@ namespace PF6_Team4_Core.Services
         }
 
 
-
-        public Task<IQueryable<Project>> SearchProjectAsync(SearchProjectOptions searchProjectOptions)
+        public Task<Result<IQueryable>> IProjectServices.SearchProjectAsync(SearchProjectOptions searchProjectOptions)
         {
             var query = await _context
             .Projects
@@ -123,7 +120,7 @@ namespace PF6_Team4_Core.Services
 
             if (searchProjectOptions.CategoryId != null)
             {
-                query = query.Where(pj => searchProjectOptions.CategoryId.Contains((int) pj.Category));
+                query = query.Where(pj => searchProjectOptions.CategoryId.Contains((int)pj.Category));
             }
 
             return query.AsQueryable();
@@ -132,7 +129,7 @@ namespace PF6_Team4_Core.Services
         }
 
 
-        public Task<Result<Project>> UptadeProjectAsync(int userId, int projectId, UpdateProjectOptions updadeProjectOptions)
+        public Task<Result<Project>> UpdateProjectAsync(int userId, int projectId, UpdateProjectOptions updadeProjectOptions)
         {
             if (!string.IsNullOrWhiteSpace(updateProjectOptions.Description))
             {
@@ -147,7 +144,9 @@ namespace PF6_Team4_Core.Services
 
         }
 
-
-
+        
+        
     }
+
 }
+

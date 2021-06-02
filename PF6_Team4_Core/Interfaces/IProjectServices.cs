@@ -15,7 +15,7 @@ namespace PF6_Team4_Core.Interfaces
         Task<Result<Project>> CreateProjectAsync(int userId, CreateProjectOptions createProjectOptions);
 
         Task<Result<Project>> GetProjectByIdAsync(int id);
-        Task<Result<Project>> UptadeProjectAsync(int userId,int projectId, UpdateProjectOptions updadeProjectOptions);
+        Task<Result<Project>> UpdateProjectAsync(int userId,int projectId, UpdateProjectOptions updadeProjectOptions);
         Task<Result<IQueryable>> SearchProjectAsync(SearchProjectOptions searchProjectOptions);
 
 

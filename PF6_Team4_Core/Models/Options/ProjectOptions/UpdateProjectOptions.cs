@@ -14,7 +14,7 @@ namespace PF6_Team4_Core.Models.Options.ProjectOptions
 
         public string Title { get; set; }
 
-        public string Description { get; set }
+        public string Description { get; set; }
 
         public int CategoryId { get; set;}
        
