@@ -33,7 +33,12 @@ namespace PF6_Team4_Core.Services
                 //RewardDescription = rewardpackageoptions.RewardDescription,
                 //CreationDate = DateTime.Now
             };
-            await _context.Projects.AddAsync(project);
+            await _context.Projects.AddAsync(newProject);
+
+            return new Result<Project>
+            {
+                Data = newProject
+            };
         }
 
         public Task<Result<List<Project>>> GetAllProjectsAsync()

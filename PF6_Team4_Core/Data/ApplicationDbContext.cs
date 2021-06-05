@@ -17,8 +17,11 @@ namespace PF6_Team4_Core.Data
         public DbSet<Project> Projects { set; get; }
         public DbSet<RewardPackage> RewardPackages { set; get; }
         DbSet<BackerUserProject> IApplicationDbContext.BackerUserProjects { set; get; }
-        DbSet<CreatorUserProject> IApplicationDbContext.CreatorUserProjects { set; get; }
         DbSet<ProjectRewardPackage> IApplicationDbContext.ProjectRewardPackages { set; get; }
+        DbSet<UserLoggedIn> IApplicationDbContext.UsersLoggedIn { set; get; }
+
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

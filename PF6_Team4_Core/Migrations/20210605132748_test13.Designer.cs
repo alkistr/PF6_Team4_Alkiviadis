@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PF6_Team4_Core.Data;
 
 namespace PF6_Team4_Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210605132748_test13")]
+    partial class test13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,13 +23,13 @@ namespace PF6_Team4_Core.Migrations
 
             modelBuilder.Entity("PF6_Team4_Core.Models.BackerUserProject", b =>
                 {
-                    b.Property<int>("BackerUserProjectId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<decimal>("AmountDonated")
-                        .HasColumnType("decimal(20,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
@@ -35,9 +37,9 @@ namespace PF6_Team4_Core.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("BackerUserProjectId");
+                    b.HasKey("Id");
 
-                    b.ToTable("BackerUserProject");
+                    b.ToTable("PF6_Team4_Core.Interfaces.IApplicationDbContext.BackerUserProjects");
                 });
 
             modelBuilder.Entity("PF6_Team4_Core.Models.Project", b =>
