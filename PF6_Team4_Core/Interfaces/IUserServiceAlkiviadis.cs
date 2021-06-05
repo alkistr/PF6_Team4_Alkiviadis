@@ -18,6 +18,6 @@ namespace PF6_Team4_Core.Interfaces
 
         Task<Result<User>> GetUserById(int UserId);
 
-        Task<Result<User>> UpdateUser(UserOptions userOptions, int id);
+        //Task<Result<User>> UpdateUser(UserOptions userOptions, int id);
     }
 }

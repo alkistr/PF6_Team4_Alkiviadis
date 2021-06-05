@@ -130,31 +130,31 @@ namespace PF6_Team4_Core.Services
 
        
 
-        public async Task<Result<User>> UpdateUser(UserOptions userOptions, int UserId)
-        {
-            var userToUpdate = await GetUserById(UserId);
+        //public async Task<Result<User>> UpdateUser(UserOptions userOptions, int UserId)
+        //{
+        //    var userToUpdate = await GetUserById(UserId);
 
-            if (userToUpdate.Error != null || userToUpdate.Data == null)
-            {
-                return new Result<User>(ErrorCode.NotFound, $"Customer with id #{UserId} not found.");
-            }
+        //    if (userToUpdate.Error != null || userToUpdate.Data == null)
+        //    {
+        //        return new Result<User>(ErrorCode.NotFound, $"Customer with id #{UserId} not found.");
+        //    }
 
-            var user = await _context
-                .Users
-                .SingleOrDefaultAsync(cus => cus.UserId == UserId);
+        //    var user = await _context
+        //        .Users
+        //        .SingleOrDefaultAsync(cus => cus.UserId == UserId);
 
-            UserOptions userToUpdate =  userOptions
-            {
-                Email = userOptions.Email,
-                FirstName = userOptions.FirstName,
-                LastName = userOptions.LastName,
-                Address = userOptions.Address
-            };
+        //    UserOptions userToUpdate =  userOptions
+        //    {
+        //        Email = userOptions.Email,
+        //        FirstName = userOptions.FirstName,
+        //        LastName = userOptions.LastName,
+        //        Address = userOptions.Address
+        //    };
 
-            _context.Update(userToUpdate);
-            await _context.SaveChangesAsync();
+        //    _context.Update(userToUpdate);
+        //    await _context.SaveChangesAsync();
 
-            return userToUpdate;
-        }
+        //    return userToUpdate;
+        //}
     }
 }
