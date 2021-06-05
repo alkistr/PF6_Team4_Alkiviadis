@@ -13,7 +13,7 @@ namespace PF6_Team4_Core.Data
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         public DbSet<User> Users { set; get; }
-
+        public DbSet<UserLoggedIn> UsersLoggedIn { set; get; }
         public DbSet<Project> Projects { set; get; }
         public DbSet<RewardPackage> RewardPackages { set; get; }
         DbSet<BackerUserProject> IApplicationDbContext.BackerUserProjects { set; get; }

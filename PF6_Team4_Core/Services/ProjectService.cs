@@ -23,12 +23,12 @@ namespace PF6_Team4_Core.Services
             _context = context;
             _logger = logger;
         }
-        public async Task<Result<Project>> CreateProjectAsync(CreateProjectOptions createProjectOptions)
+        public async Task<Result<Project>> CreateProject(CreateProjectOptions createProjectOptions)
         {
 
             var newProject = new Project
             {
-                ProjectName = rewardpackageoptions.RewardPackageName,
+                Title = createProjectOptions.Title,
                 //MaxAmountRoGetReward = rewardpackageoptions.MaxAmountRoGetReward,
                 //RewardDescription = rewardpackageoptions.RewardDescription,
                 //CreationDate = DateTime.Now

@@ -18,5 +18,6 @@ namespace PF6_Team4_Core.Interfaces
         public DbSet<ProjectRewardPackage> ProjectRewardPackages { set; get; }
 
         Task<int> SaveChangesAsync();
+        void Update(Result<User> userToUpdate);
     }
 }
