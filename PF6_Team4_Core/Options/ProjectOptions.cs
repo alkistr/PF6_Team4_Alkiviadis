@@ -1,12 +1,13 @@
-﻿using System;
+﻿using PF6_Team4_Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PF6_Team4_Core.Models.Options.ProjectOptions
+namespace PF6_Team4_Core.Options
 {
-    public class CreateProjectOptions
+    public class ProjectOptions
     {
         public int ProjectId { get; set; }
         public string Title { get; set; }
@@ -14,6 +15,5 @@ namespace PF6_Team4_Core.Models.Options.ProjectOptions
         public decimal TotalAmount { get; set; }
         public decimal CurrentAmount { get; set; }
         public Category category { get; set; }
-        
     }
 }
