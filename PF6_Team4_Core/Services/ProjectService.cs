@@ -66,9 +66,9 @@ namespace PF6_Team4_Core.Services
         }
 
         
-        public Task<Result<List<Project>>> GetAllProjectsAsync()
+        public async Task<Result<List<Project>>> GetAllProjectsAsync()
         {
-            var projects = await _context.projects.ToListAsync();
+            var projects = await _context.Projects.ToListAsync();
 
             return new Result<List<Project>>
             {
@@ -78,7 +78,7 @@ namespace PF6_Team4_Core.Services
 
 
 
-        public Task<Result<Project>> GetProjectByIdAsync(int id)
+        public async Task<Result<Project>> GetProjectByIdAsync(int id)
         {
             if (id <= 0)
             {
@@ -101,7 +101,7 @@ namespace PF6_Team4_Core.Services
         }
 
 
-        public Task<Result<IQueryable>> IProjectServices.SearchProjectAsync(SearchProjectOptions searchProjectOptions)
+        public async Task<Result<IQueryable>> IProjectServices.SearchProjectAsync(SearchProjectOptions searchProjectOptions)
         {
             var query = await _context
             .Projects
@@ -118,7 +118,7 @@ namespace PF6_Team4_Core.Services
 
             }
 
-            if (searchProjectOptions.CategoryId != null)
+            if (searchProjectOptions.CategoryId != 0)
             {
                 query = query.Where(pj => searchProjectOptions.CategoryId.Contains((int)pj.Category));
             }
@@ -129,7 +129,7 @@ namespace PF6_Team4_Core.Services
         }
 
 
-        public Task<Result<Project>> UpdateProjectAsync(int userId, int projectId, UpdateProjectOptions updadeProjectOptions)
+        public async Task<Result<Project>> UpdateProjectAsync(int userId, int projectId, UpdateProjectOptions updateProjectOptions)
         {
             if (!string.IsNullOrWhiteSpace(updateProjectOptions.Description))
             {
