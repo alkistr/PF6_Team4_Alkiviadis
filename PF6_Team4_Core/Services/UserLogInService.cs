@@ -40,7 +40,11 @@ namespace PF6_Team4_Core.Services
                 UserId = userLoggedIn.UserId,
                 Email = userLoggedIn.Email,
 
-            };                 
+            };
+
+            
+            await _context.UsersLoggedIn.AddAsync(userlogin);
+            
 
             return new Result<UserLoggedIn>
             {
