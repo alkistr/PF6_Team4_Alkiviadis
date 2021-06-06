@@ -32,8 +32,8 @@ namespace PF6_Team4_Core.Services
             }
 
             if (string.IsNullOrWhiteSpace(createProjectOptions.Title) ||
-              string.IsNullOrWhiteSpace(createProjectOptions.Description) ||  
-              createProjectOptions.CategoryId == null )
+              string.IsNullOrWhiteSpace(createProjectOptions.Description) ||
+              createProjectOptions.CategoryId == 0)
             {
                 return new Result<Project>(ErrorCode.BadRequest, "Not all required Project options provided.");
             }
@@ -129,7 +129,7 @@ namespace PF6_Team4_Core.Services
         }
 
 
-        public async Task<Result<Project>> UpdateProjectAsync(int userId, int projectId, UpdateProjectOptions updateProjectOptions)
+        public Task<Result<Project>> UpdateProjectAsync(int userId, int projectId, UpdateProjectOptions updadeProjectOptions)
         {
             if (!string.IsNullOrWhiteSpace(updateProjectOptions.Description))
             {
