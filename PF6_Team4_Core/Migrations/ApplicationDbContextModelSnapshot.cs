@@ -40,6 +40,32 @@ namespace PF6_Team4_Core.Migrations
                     b.ToTable("BackerUserProject");
                 });
 
+            modelBuilder.Entity("PF6_Team4_Core.Models.Options.BackerUserProjectOptions", b =>
+                {
+                    b.Property<int>("BackerUserProjectOptionsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("AmountDonated")
+                        .HasColumnType("decimal(20,2)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserVMId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BackerUserProjectOptionsId");
+
+                    b.HasIndex("UserVMId");
+
+                    b.ToTable("BackerUserProjectOptions");
+                });
+
             modelBuilder.Entity("PF6_Team4_Core.Models.Project", b =>
                 {
                     b.Property<int>("ProjectId")
@@ -50,10 +76,24 @@ namespace PF6_Team4_Core.Migrations
                     b.Property<int>("CreatorId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("CurrentAmount")
+                        .HasColumnType("decimal(20,2)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(20,2)");
+
+                    b.Property<int>("category")
+                        .HasColumnType("int");
 
                     b.HasKey("ProjectId");
 
@@ -75,7 +115,7 @@ namespace PF6_Team4_Core.Migrations
 
                     b.HasKey("ProjectRewardPackageId");
 
-                    b.ToTable("PF6_Team4_Core.Interfaces.IApplicationDbContext.ProjectRewardPackages");
+                    b.ToTable("ProjectRewardPackages");
                 });
 
             modelBuilder.Entity("PF6_Team4_Core.Models.RewardPackage", b =>
@@ -151,7 +191,79 @@ namespace PF6_Team4_Core.Migrations
 
                     b.HasKey("UserLoggedInId");
 
-                    b.ToTable("UserLoggedIn");
+                    b.ToTable("UsersLoggedIn");
+                });
+
+            modelBuilder.Entity("PF6_Team4_Core.Options.ProjectOptions", b =>
+                {
+                    b.Property<int>("ProjectOptionsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("CurrentAmount")
+                        .HasColumnType("decimal(20,2)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(20,2)");
+
+                    b.Property<int?>("UserVMId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("category")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectOptionsId");
+
+                    b.HasIndex("UserVMId");
+
+                    b.ToTable("ProjectOptions");
+                });
+
+            modelBuilder.Entity("PF6_Team4_Core.ViewModels.UserVM", b =>
+                {
+                    b.Property<int>("UserVMId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserVMId");
+
+                    b.ToTable("UsersVM");
+                });
+
+            modelBuilder.Entity("PF6_Team4_Core.Models.Options.BackerUserProjectOptions", b =>
+                {
+                    b.HasOne("PF6_Team4_Core.ViewModels.UserVM", null)
+                        .WithMany("backeruserprojectsUserVM")
+                        .HasForeignKey("UserVMId");
+                });
+
+            modelBuilder.Entity("PF6_Team4_Core.Options.ProjectOptions", b =>
+                {
+                    b.HasOne("PF6_Team4_Core.ViewModels.UserVM", null)
+                        .WithMany("projectsUserVM")
+                        .HasForeignKey("UserVMId");
+                });
+
+            modelBuilder.Entity("PF6_Team4_Core.ViewModels.UserVM", b =>
+                {
+                    b.Navigation("backeruserprojectsUserVM");
+
+                    b.Navigation("projectsUserVM");
                 });
 #pragma warning restore 612, 618
         }

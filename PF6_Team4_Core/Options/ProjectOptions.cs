@@ -9,7 +9,7 @@ namespace PF6_Team4_Core.Options
 {
     public class ProjectOptions
     {
-        public int ProjectId { get; set; }
+        public int ProjectOptionsId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal TotalAmount { get; set; }

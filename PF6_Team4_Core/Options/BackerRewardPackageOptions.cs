@@ -7,7 +7,7 @@ namespace PF6_Team4_Core.Models.Options
 {
     public class BackerRewardPackageOptions
     {
-        public int BackerRewardPackageId { get; set; }
+        public int BackerRewardPackageOptionsId { get; set; }
         public int UserId { get; set; }
         public int RewardPackageId { get; set; }
     }

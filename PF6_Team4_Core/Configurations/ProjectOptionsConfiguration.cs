@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PF6_Team4_Core.Models;
+using PF6_Team4_Core.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace PF6_Team4_Core.Configurations
 {
-    class ProjectConfiguration : IEntityTypeConfiguration<Project>
+    class ProjectOptionsConfiguration : IEntityTypeConfiguration<ProjectOptions>
     {
-        public void Configure(EntityTypeBuilder<Project> builder)
+        public void Configure(EntityTypeBuilder<ProjectOptions> builder)
         {
-            builder.ToTable("Project");
+            builder.ToTable("ProjectOptions");
             builder.Property(cus => cus.Title)
                 .IsRequired()
                 .HasMaxLength(50);

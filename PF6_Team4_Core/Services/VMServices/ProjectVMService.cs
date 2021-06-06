@@ -3,14 +3,9 @@ using PF6_Team4_Core.Interfaces;
 using PF6_Team4_Core.Models;
 using PF6_Team4_Core.Models.Options;
 using PF6_Team4_Core.Options;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using PF6_Team4_Core.ViewModels;
-using System.Linq;
 
 
 
@@ -31,14 +26,27 @@ namespace PF6_Team4_Core.Services.VMServices
 
         public Result<List<RewardPackageOptions>> GetprojectrewardpackagesVM(int id)
         {
-            List<RewardPackageOptions> rewardpackages = _context
+            List<RewardPackage> rewardpackages = _context
                 .RewardPackages
-                .ToList(_rewardpackage => _rewardpackage.ProjectId == id);
+                .Where(_rewardpackage => _rewardpackage.ProjectId == id)
+                .ToList();
+
+            var rewardpackageoptions = new List<RewardPackageOptions>();
+
+            foreach (RewardPackage rpoptions in rewardpackages)
+            {
+                rewardpackageoptions.Add(new RewardPackageOptions()
+                {
+                    RewardPackageName = rpoptions.RewardPackageName,
+                    MaxAmountRoGetReward = rpoptions.MaxAmountRoGetReward,
+                    RewardDescription = rpoptions.RewardDescription
+                });
+            }
 
 
             return new Result<List<RewardPackageOptions>>
             {
-                Data = rewardpackages
+                Data = rewardpackageoptions
             };
         }
 
@@ -51,7 +59,7 @@ namespace PF6_Team4_Core.Services.VMServices
             
             ProjectOptions viewprojectoptions = new() 
             {
-                ProjectId = viewp.ProjectId, 
+                ProjectOptionsId = viewp.ProjectId, 
                 category = viewp.category,
                 CurrentAmount = viewp.CurrentAmount,
                 TotalAmount = viewp.TotalAmount,
@@ -68,13 +76,13 @@ namespace PF6_Team4_Core.Services.VMServices
         public Result<ProjectVM> CreateProjectVM(int id)
         {
             
-            ProjectOptions project = GetProjectVMByIdAsync(id);
-            List<RewardPackageOptions> rewardpackages = GetprojectrewardpackagesVM(id);
+            var project = GetProjectVMByIdAsync(id);
+            var rewardpackages = GetprojectrewardpackagesVM(id);
 
             ProjectVM projectview = new()
             { 
-                ProjectId = project.ProjectId,
-                rewardpackageProjectVM = rewardpackages
+                ProjectId = project.Data.ProjectOptionsId,
+                rewardpackageProjectVM = rewardpackages.Data
             };
                   
                         

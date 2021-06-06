@@ -7,6 +7,7 @@ namespace PF6_Team4_Core.Models.Options
 {
     public class RewardPackageOptions
     {
+        public int RewardPackageOptionsId { get; set; }
         public decimal MaxAmountRoGetReward { get; set; }
         public string RewardDescription { get; set; }
         public string RewardPackageName { get; set; }

@@ -1,6 +1,7 @@
 ﻿using PF6_Team4_Core.Models;
 using PF6_Team4_Core.Models.Options;
 using PF6_Team4_Core.Options;
+using PF6_Team4_Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace PF6_Team4_Core.Interfaces
     {
         Result<ProjectOptions> GetProjectVMByIdAsync(int id);
         Result<List<RewardPackageOptions>> GetprojectrewardpackagesVM(int id);
+        Result<ProjectVM> CreateProjectVM(int id);
     }
 }

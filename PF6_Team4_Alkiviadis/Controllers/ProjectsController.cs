@@ -6,36 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PF6_Team4_Core.Data;
-using PF6_Team4_Core.Interfaces;
 using PF6_Team4_Core.Models;
 
 namespace PF6_Team4_Alkiviadis.Controllers
 {
-    public class RewardPackagesController : Controller
+    public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IRewardPackageServices _rewardpackageService;
-        //private readonly IUserVMService _uservmservice;
 
-        public RewardPackagesController(ApplicationDbContext context, IRewardPackageServices rewardpackageService/*, IUserVMService uservmservice */)
+        public ProjectsController(ApplicationDbContext context)
         {
-            _rewardpackageService = rewardpackageService;
-            //_uservmservice = uservmservice;
             _context = context;
         }
 
-        
-
-        // GET: RewardPackages
+        // GET: Projects
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RewardPackages.ToListAsync());
+            return View(await _context.Projects.ToListAsync());
         }
 
-        // GET: RewardPackages/Details/5
-
-
-        
+        // GET: Projects/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,40 +33,39 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages
-                .FirstOrDefaultAsync(m => m.RewardPackageId == id);
-            if (rewardPackage == null)
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            if (project == null)
             {
                 return NotFound();
             }
-            
-            return View(rewardPackage);
+
+            return View(project);
         }
 
-
-        // GET: RewardPackages/Create
+        // GET: Projects/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: RewardPackages/Create
+        // POST: Projects/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RewardPackageId,MaxAmountRoGetReward,RewardDescription,RewardPackageName,CreationDate")] RewardPackage rewardPackage)
+        public async Task<IActionResult> Create([Bind("ProjectId,Title,CreatorId,Description,TotalAmount,CurrentAmount,category")] Project project)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rewardPackage);
+                _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(rewardPackage);
+            return View(project);
         }
 
-        // GET: RewardPackages/Edit/5
+        // GET: Projects/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,22 +73,22 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages.FindAsync(id);
-            if (rewardPackage == null)
+            var project = await _context.Projects.FindAsync(id);
+            if (project == null)
             {
                 return NotFound();
             }
-            return View(rewardPackage);
+            return View(project);
         }
 
-        // POST: RewardPackages/Edit/5
+        // POST: Projects/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RewardPackageId,MaxAmountRoGetReward,RewardDescription,RewardPackageName,CreationDate")] RewardPackage rewardPackage)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,Title,CreatorId,Description,TotalAmount,CurrentAmount,category")] Project project)
         {
-            if (id != rewardPackage.RewardPackageId)
+            if (id != project.ProjectId)
             {
                 return NotFound();
             }
@@ -108,12 +97,12 @@ namespace PF6_Team4_Alkiviadis.Controllers
             {
                 try
                 {
-                    _context.Update(rewardPackage);
+                    _context.Update(project);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RewardPackageExists(rewardPackage.RewardPackageId))
+                    if (!ProjectExists(project.ProjectId))
                     {
                         return NotFound();
                     }
@@ -124,10 +113,10 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(rewardPackage);
+            return View(project);
         }
 
-        // GET: RewardPackages/Delete/5
+        // GET: Projects/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,30 +124,30 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages
-                .FirstOrDefaultAsync(m => m.RewardPackageId == id);
-            if (rewardPackage == null)
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            if (project == null)
             {
                 return NotFound();
             }
 
-            return View(rewardPackage);
+            return View(project);
         }
 
-        // POST: RewardPackages/Delete/5
+        // POST: Projects/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var rewardPackage = await _context.RewardPackages.FindAsync(id);
-            _context.RewardPackages.Remove(rewardPackage);
+            var project = await _context.Projects.FindAsync(id);
+            _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool RewardPackageExists(int id)
+        private bool ProjectExists(int id)
         {
-            return _context.RewardPackages.Any(e => e.RewardPackageId == id);
+            return _context.Projects.Any(e => e.ProjectId == id);
         }
     }
 }

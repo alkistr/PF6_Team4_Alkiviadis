@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PF6_Team4_Core.Interfaces;
 using PF6_Team4_Core.Models;
+using PF6_Team4_Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,12 @@ namespace PF6_Team4_Core.Data
     {
         public DbSet<User> Users { set; get; }
         public DbSet<UserLoggedIn> UsersLoggedIn { set; get; }
+        public DbSet<UserVM> UsersVM { set; get; }
+
         public DbSet<Project> Projects { set; get; }
         public DbSet<RewardPackage> RewardPackages { set; get; }
-        DbSet<BackerUserProject> IApplicationDbContext.BackerUserProjects { set; get; }
-        DbSet<ProjectRewardPackage> IApplicationDbContext.ProjectRewardPackages { set; get; }
-        DbSet<UserLoggedIn> IApplicationDbContext.UsersLoggedIn { set; get; }
+        public DbSet<BackerUserProject> BackerUserProjects { set; get; }
+        public DbSet<ProjectRewardPackage> ProjectRewardPackages { set; get; }
 
 
 

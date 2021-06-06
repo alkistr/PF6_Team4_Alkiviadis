@@ -7,7 +7,7 @@ namespace PF6_Team4_Core.Models.Options
 {
     public class CreatorUserProjectOptions
     {
-        public int CreatorUserProjectId { get; set; }
+        public int CreatorUserProjectOptionsId { get; set; }
         public int UserId { get; set; }
         public int ProjectId { get; set; }
     }
