@@ -77,8 +77,14 @@ namespace PF6_Team4_Core.Services.VMServices
             };
         }
 
-        public Result<UserOptions> GetUserVMByIdAsync(int id)
+        public Result<UserOptions> GetUserVMByIdAsync()
         {
+            var id = _context
+                        .UsersLoggedIn
+                        .OrderByDescending(x => x.UserId)
+                        .First()
+                        .UserId;
+
             var viewU = _context
                 .Users
                 .SingleOrDefault(_user => _user.UserId == id);
@@ -102,7 +108,7 @@ namespace PF6_Team4_Core.Services.VMServices
         public Result<UserVM> CreateUserVM(int id)
         {
 
-            var uservm = GetUserVMByIdAsync(id);
+            var uservm = GetUserVMByIdAsync();
             var projectsofcreatoruser = GetUsercreatorprojectsVM(id); 
             var backeruserproject  = GetUserbackerprojectsVM(id);
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PF6_Team4_Core.Interfaces
 {
-    public interface ProjectVMServiceInterface
+    public interface IProjectVMService
     {
         Result<ProjectOptions> GetProjectVMByIdAsync(int id);
         Result<List<RewardPackageOptions>> GetprojectrewardpackagesVM(int id);

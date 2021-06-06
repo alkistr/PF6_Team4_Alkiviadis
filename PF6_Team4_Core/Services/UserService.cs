@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PF6_Team4_Core.Services
 {
-    public class UserService : IUserService_alkiviadis
+    public class UserService : IUserServiceAlkiviadis
     {
         private readonly IApplicationDbContext _context;
         private readonly ILogger<UserService> _logger;

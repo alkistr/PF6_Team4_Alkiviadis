@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PF6_Team4_Core.Interfaces
 {
-    public interface IUserService_alkiviadis
+    public interface IUserServiceAlkiviadis
     {
         Task<Result<User>> CreateUser(UserOptions userOptions);
 

@@ -12,7 +12,7 @@ namespace PF6_Team4_Core.Interfaces
 {
     public interface IUserVMService
     {
-        Result<UserOptions> GetUserVMByIdAsync(int id);
+        Result<UserOptions> GetUserVMByIdAsync();
         Result<List<ProjectOptions>> GetUsercreatorprojectsVM(int id);
         Result<List<BackerUserProjectOptions>> GetUserbackerprojectsVM(int id);
         Result<UserVM> CreateUserVM(int id);

@@ -11,7 +11,7 @@ using PF6_Team4_Core.ViewModels;
 
 namespace PF6_Team4_Core.Services.VMServices
 {
-    public class ProjectVMService : ProjectVMServiceInterface
+    public class ProjectVMService : IProjectVMService
     {
         private readonly IApplicationDbContext _context;
         private readonly ILogger<ProjectVMService> _logger;
