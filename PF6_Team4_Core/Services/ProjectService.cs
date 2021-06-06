@@ -24,7 +24,7 @@ namespace PF6_Team4_Core.Services
             _logger = logger;
         }
 
-        public async Task<Result<Project>> CreateProjectAsync(int userId, CreateProjectOptions createProjectOptions)
+        public async Task<Result<Project>> CreateProjectAsync(int? userId, CreateProjectOptions createProjectOptions)
         {            
             if (createProjectOptions == null)
             {
@@ -78,7 +78,7 @@ namespace PF6_Team4_Core.Services
 
 
 
-        public async Task<Result<Project>> GetProjectByIdAsync(int id)
+        public async Task<Result<Project>> GetProjectByIdAsync(int? id)
         {
             if (id <= 0)
             {
@@ -101,16 +101,15 @@ namespace PF6_Team4_Core.Services
         }
 
 
-        public async Task<Result<IQueryable>> IProjectServices.SearchProjectAsync(SearchProjectOptions searchProjectOptions)
+        public async Task<IQueryable<Project>> SearchProjectAsync(SearchProjectOptions searchProjectOptions)
         {
-            var query = await _context
-            .Projects
-            .AsQueryable();
+            var projects = await _context.Projects.ToListAsync();
+
 
 
             if (!string.IsNullOrWhiteSpace(searchProjectOptions.SearchText))
             {
-                query = query.Where(
+                projects = projects.Where(
                         pj => pj.Title.ToLower().Contains(searchProjectOptions.SearchText.ToLower())
                               ||
                               pj.Description.ToLower()
@@ -120,26 +119,54 @@ namespace PF6_Team4_Core.Services
 
             if (searchProjectOptions.CategoryId != 0)
             {
-                query = query.Where(pj => searchProjectOptions.CategoryId.Contains((int)pj.Category));
+                projects = projects.Where(pj => searchProjectOptions.CategoryId.Contains((int)pj.Category));
             }
 
-            return query.AsQueryable();
+            return projects.AsQueryable();
 
 
         }
 
 
-        public Task<Result<Project>> UpdateProjectAsync(int userId, int projectId, UpdateProjectOptions updadeProjectOptions)
+        public async Task<bool> UpdateProjectAsync(int? userId, int? projectId, UpdateProjectOptions updadeProjectOptions)
         {
-            if (!string.IsNullOrWhiteSpace(updateProjectOptions.Description))
+
+            if (projectId == null || userId == null)
             {
-                project.Data.Description = updateProjectOptions.Description;
+                return false;
+            }
+            var project = GetProjectByIdAsync(projectId);
+
+            if (!string.IsNullOrWhiteSpace(updadeProjectOptions.Description))
+            {
+                project.Data.Description = updadeProjectOptions.Description;
+                
             }
             
-            if (!string.IsNullOrWhiteSpace(updateProjectOptions.Title))
+            if (!string.IsNullOrWhiteSpace(updadeProjectOptions.Title))
             {
-                project.Data.Title = updateProjectOptions.Title;
+                project.Data.Title = updadeProjectOptions.Title;
+                
             }
+
+            if (updadeProjectOptions.CategoryId != 0 )
+            {
+               project.Data.Category = (Category) updadeProjectOptions.CategoryId;
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+               _logger.LogError(ex.Message);
+               return false;
+            }
+                
+              
+              return true;
+
 
 
         }
