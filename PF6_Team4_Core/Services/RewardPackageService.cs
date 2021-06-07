@@ -127,5 +127,17 @@ namespace PF6_Team4_Core
                 Data = rewardpackages.Count > 0 ? rewardpackages : new List<RewardPackage>()
             };
         }
+
+        public async Task<Result<RewardPackage>> UpdateRewardPackageAsync(int id, RewardPackage rewardpackageoptions)
+        {
+                        
+            _context.RewardPackages.Update(rewardpackageoptions);
+            await _context.SaveChangesAsync();
+
+            return new Result<RewardPackage>
+            {
+                Data = rewardpackageoptions
+            };
+        }
     }
 }

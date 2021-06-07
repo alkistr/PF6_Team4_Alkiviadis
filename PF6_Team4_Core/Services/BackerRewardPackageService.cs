@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using PF6_Team4_Core.Interfaces;
+using PF6_Team4_Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,16 @@ namespace PF6_Team4_Core.Services
         {
             _context = context;
             _logger = logger;
+        }
+
+        public Task<Result<BackerRewardPackage>> CreateRewardPackageAsync(BackerRewardPackage backerrewardpackageoptions)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Result<List<BackerRewardPackage>>> GetAllRewardPackagesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }
