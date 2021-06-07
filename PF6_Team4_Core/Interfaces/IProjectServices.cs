@@ -1,4 +1,5 @@
-﻿using PF6_Team4_Core.Models;
+﻿using PF6_Team4_Core.Dtos;
+using PF6_Team4_Core.Models;
 using PF6_Team4_Core.Models.Options;
 using PF6_Team4_Core.Models.Options.ProjectOptions;
 using System;
@@ -11,13 +12,15 @@ namespace PF6_Team4_Core.Interfaces
 {
     public interface IProjectServices
     {
-        Task<Result<List<Project>>> GetAllProjectsAsync();
-        Task<Result<Project>> CreateProject(CreateProjectOptions createProjectOptions);
-        Task<Result<Project>> GetProjectByIdAsync(int id);
-        //Task<Result<Project>> UptadeProjectAsync(int userId,int projectId, UpdateProjectOptions updadeProjectOptions);
-        //Task<Result<Project>> SearchProjectAsync(SearchProjectOptions searchProjectOptions);
+        Task<Result<List<ProjectDto>>> GetAllProjectsAsync();
+        Task<Result<ProjectDto>> CreateProject(CreateProjectOptions createProjectOptions);
+        Task<Result<ProjectDto>> GetProjectByIdAsync(int id);
+        Task<Result<int>> DeleteProjectByIdAsync(int id);
+        Task<Result<int>> UptadeProjectAsync(int userId,int projectId, UpdateProjectOptions updadeProjectOptions);
+        Task<Result<List<ProjectDto>>> SearchProjectAsync(SearchProjectOptions searchProjectOptions);
 
 
 
     }
 }
+
