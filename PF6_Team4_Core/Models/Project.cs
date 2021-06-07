@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace PF6_Team4_Core.Models
@@ -14,7 +15,7 @@ namespace PF6_Team4_Core.Models
         public decimal CurrentAmount { get; set; }
         public Category category { get; set; } = Category.Software;
         //public DateTime CreationDate { get; set; } = DateTime.Now;
-        //public List<RewardPackage> ProjectRewardPackages { get; set; }
+        public List<RewardPackage> ProjectRewardPackages { get; set; }
 
     }
 }

@@ -14,12 +14,11 @@ namespace PF6_Team4_Core.Configurations
         public void Configure(EntityTypeBuilder<BackerUserProject> builder)
         {
             builder.ToTable("BackerUserProject");
-            //builder.Property(cus => cus.)
+            //builder.Property(cus => cus.UserId)
+            //    .IsRequired();
+            //builder.Property(cus => cus.ProjectId)
             //    .IsRequired()
-            //    .HasMaxLength(50);
-            //builder.Property(cus => cus.)
-            //    .IsRequired()
-            //    .HasMaxLength(50);
+            //    .HasColumnType();
             builder.Property(cus => cus.AmountDonated)
                 .IsRequired()
                 .HasColumnType("decimal(20,2)");
