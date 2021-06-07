@@ -29,7 +29,8 @@ namespace PF6_Team4_Alkiviadis.Controllers
         // GET: RewardPackages
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RewardPackages.ToListAsync());
+            var allRewardPackages = await _rewardpackageService.GetAllRewardPackagesAsync();
+            return View(allRewardPackages.Data);
         }
 
         // GET: RewardPackages/Details/5
@@ -43,8 +44,8 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages
-                .FirstOrDefaultAsync(m => m.RewardPackageId == id);
+            var rewardPackage = await _rewardpackageService.GetRewardPackageByIdAsync(id.Value);
+
             if (rewardPackage == null)
             {
                 return NotFound();
@@ -69,8 +70,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rewardPackage);
-                await _context.SaveChangesAsync();
+                await _rewardpackageService.CreateRewardPackageAsync(rewardPackage);
                 return RedirectToAction(nameof(Index));
             }
             return View(rewardPackage);
@@ -135,26 +135,21 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages
-                .FirstOrDefaultAsync(m => m.RewardPackageId == id);
-            if (rewardPackage == null)
-            {
-                return NotFound();
-            }
+            await _rewardpackageService.DeleteRewardPackageByIdAsync(id.Value);
 
-            return View(rewardPackage);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: RewardPackages/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var rewardPackage = await _context.RewardPackages.FindAsync(id);
-            _context.RewardPackages.Remove(rewardPackage);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var rewardPackage = await _context.RewardPackages.FindAsync(id);
+        //    _context.RewardPackages.Remove(rewardPackage);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool RewardPackageExists(int id)
         {
