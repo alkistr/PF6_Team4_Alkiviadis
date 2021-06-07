@@ -12,7 +12,7 @@ namespace PF6_Team4_Core.Interfaces
         Task<Result<List<RewardPackage>>> GetAllRewardPackagesAsync();
 
         Task<Result<RewardPackage>> CreateRewardPackageAsync(RewardPackage rewardpackageoptions);
-
+        Task<Result<RewardPackage>> UpdateRewardPackageAsync(int id, RewardPackage rewardpackageoptions);
         Task<Result<RewardPackage>> GetRewardPackageByIdAsync(int id);
 
         Task<Result<int>> DeleteRewardPackageByIdAsync(int id);

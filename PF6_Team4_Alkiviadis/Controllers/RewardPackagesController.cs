@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PF6_Team4_Core.Data;
+using PF6_Team4_Core.Interfaces;
 using PF6_Team4_Core.Models;
 
 namespace PF6_Team4_Alkiviadis.Controllers
@@ -13,19 +13,29 @@ namespace PF6_Team4_Alkiviadis.Controllers
     public class RewardPackagesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IRewardPackageServices _rewardpackageService;
+        //private readonly IUserVMService _uservmservice;
 
-        public RewardPackagesController(ApplicationDbContext context)
+        public RewardPackagesController(ApplicationDbContext context, IRewardPackageServices rewardpackageService/*, IUserVMService uservmservice */)
         {
+            _rewardpackageService = rewardpackageService;
+            //_uservmservice = uservmservice;
             _context = context;
         }
+
+        
 
         // GET: RewardPackages
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RewardPackages.ToListAsync());
+            var allRewardPackages = await _rewardpackageService.GetAllRewardPackagesAsync();
+            return View(allRewardPackages.Data);
         }
 
         // GET: RewardPackages/Details/5
+
+
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,15 +43,16 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages
-                .FirstOrDefaultAsync(m => m.RewardPackageId == id);
+            var rewardPackage = await _rewardpackageService.GetRewardPackageByIdAsync(id.Value);
+
             if (rewardPackage == null)
             {
                 return NotFound();
             }
-
+            
             return View(rewardPackage);
         }
+
 
         // GET: RewardPackages/Create
         public IActionResult Create()
@@ -58,8 +69,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rewardPackage);
-                await _context.SaveChangesAsync();
+                await _rewardpackageService.CreateRewardPackageAsync(rewardPackage);
                 return RedirectToAction(nameof(Index));
             }
             return View(rewardPackage);
@@ -95,22 +105,25 @@ namespace PF6_Team4_Alkiviadis.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(rewardPackage);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RewardPackageExists(rewardPackage.RewardPackageId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _rewardpackageService.UpdateRewardPackageAsync(id, rewardPackage);
+                
+                //try
+                //{
+                //    _context.Update(rewardPackage);
+                //    await _context.SaveChangesAsync();
+                //}
+                //catch (DbUpdateConcurrencyException)
+                //{
+                //    if (!RewardPackageExists(rewardPackage.RewardPackageId))
+                //    {
+                //        return NotFound();
+                //    }
+                //    else
+                //    {
+                //        throw;
+                //    }
+                //}
+
                 return RedirectToAction(nameof(Index));
             }
             return View(rewardPackage);
@@ -124,26 +137,21 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var rewardPackage = await _context.RewardPackages
-                .FirstOrDefaultAsync(m => m.RewardPackageId == id);
-            if (rewardPackage == null)
-            {
-                return NotFound();
-            }
+            await _rewardpackageService.DeleteRewardPackageByIdAsync(id.Value);
 
-            return View(rewardPackage);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: RewardPackages/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var rewardPackage = await _context.RewardPackages.FindAsync(id);
-            _context.RewardPackages.Remove(rewardPackage);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var rewardPackage = await _context.RewardPackages.FindAsync(id);
+        //    _context.RewardPackages.Remove(rewardPackage);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool RewardPackageExists(int id)
         {

@@ -27,11 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PF6_Team4_Core\PF6_Team4_Core.csproj" />
+    <Folder Include="Views\Users\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Home\User\" />
+    <ProjectReference Include="..\PF6_Team4_Core\PF6_Team4_Core.csproj" />
   </ItemGroup>
 
 </Project>
