@@ -65,7 +65,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 await _userLoginService.GetUserLoggedInByEmailAsync(userLoggedIn.Email);
                 userLoggedIn = _userLoginService.LoggedInUserInfoVM().Data;
             }
-            return View(userLoggedIn);
+            return View();
         }
 
         //// GET: UserLoggedIns/Edit/5

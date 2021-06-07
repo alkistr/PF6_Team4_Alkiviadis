@@ -63,7 +63,7 @@ namespace PF6_Team4_Core.Services.VMServices
                 creatorsprojectsoptions.Add(new ProjectOptions() 
                 {
                     ProjectOptionsId = cpoptions.ProjectId,
-                    category = cpoptions.category,
+                    //category = cpoptions.category,
                     CurrentAmount = cpoptions.CurrentAmount,
                     Description = cpoptions.Description,
                     Title = cpoptions.Title,
@@ -79,7 +79,7 @@ namespace PF6_Team4_Core.Services.VMServices
 
         public Result<UserOptions> GetUserVMByIdAsync()
         {
-            var id = _context
+            int id = _context
                         .UsersLoggedIn
                         .OrderByDescending(x => x.UserId)
                         .First()

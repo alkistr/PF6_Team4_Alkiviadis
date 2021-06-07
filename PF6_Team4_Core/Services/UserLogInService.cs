@@ -44,7 +44,8 @@ namespace PF6_Team4_Core.Services
 
             
             await _context.UsersLoggedIn.AddAsync(userlogin);
-            
+            await _context.SaveChangesAsync();
+
 
             return new Result<UserLoggedIn>
             {
