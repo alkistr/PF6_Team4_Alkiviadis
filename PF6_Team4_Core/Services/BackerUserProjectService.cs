@@ -34,6 +34,7 @@ namespace PF6_Team4_Core.Services
             };
 
             await _context.BackerUserProjects.AddAsync(newDonation);
+            await _context.SaveChangesAsync();
 
             return new Result<BackerUserProject>
             {
