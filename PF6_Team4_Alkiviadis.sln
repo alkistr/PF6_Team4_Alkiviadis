@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PF6_Team4_Alkiviadis", "PF6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PF6_Team4_Core", "PF6_Team4_Core\PF6_Team4_Core.csproj", "{BB4BC87E-7123-4414-B1E2-D577E74ADA58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PF6Team4WebApi", "PF6Team4WebApi\PF6Team4WebApi.csproj", "{DBF10406-1B8B-435F-8AA9-4DA0BAAB587B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BB4BC87E-7123-4414-B1E2-D577E74ADA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB4BC87E-7123-4414-B1E2-D577E74ADA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB4BC87E-7123-4414-B1E2-D577E74ADA58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF10406-1B8B-435F-8AA9-4DA0BAAB587B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF10406-1B8B-435F-8AA9-4DA0BAAB587B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF10406-1B8B-435F-8AA9-4DA0BAAB587B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF10406-1B8B-435F-8AA9-4DA0BAAB587B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

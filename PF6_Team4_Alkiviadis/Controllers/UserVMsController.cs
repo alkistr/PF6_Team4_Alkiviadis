@@ -19,7 +19,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
         public IActionResult Index()
         {
             var userview = _uservmservice.GetUserVMByIdAsync();
-            return View(userview.Data);
+            return View(userview.Data.FirstName);
         }
     }
     //    // GET: UserVMs/Details/5

@@ -24,6 +24,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.projectsUserVM)
+            </td>
+            @foreach (var listitem in Model)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => listitem.projectsUserVM)
+                </td>
+            }*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.UserVMId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.UserVMId">Details</a> |
