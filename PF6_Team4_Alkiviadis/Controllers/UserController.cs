@@ -50,7 +50,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
         // POST: User/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task <ActionResult> Create ([Bind("UserId,FirstName,LastName,Email,CreationDate,Adress")] User user)
+        public async Task <ActionResult> Create ([Bind("UserId,FirstName,LastName,Email,CreationDate,Adress")] User user) 
         {
             if(ModelState.IsValid)
             {
