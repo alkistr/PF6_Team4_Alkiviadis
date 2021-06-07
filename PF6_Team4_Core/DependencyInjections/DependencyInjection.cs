@@ -30,6 +30,7 @@ namespace PF6_Team4_Core.DependencyInjections
             services.AddScoped<IUserVMService, UserVMService>();
             services.AddScoped<IProjectVMService, ProjectVMService>();
             services.AddScoped<IUserLoginService, UserLogInService>();
+            services.AddScoped<IBackerUserProjectService, BackerUserProjectService>();
 
 
 

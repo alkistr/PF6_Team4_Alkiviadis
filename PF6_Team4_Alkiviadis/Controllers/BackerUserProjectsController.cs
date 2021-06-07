@@ -57,6 +57,8 @@ namespace PF6_Team4_Alkiviadis.Controllers
         {
             if (ModelState.IsValid)
             {
+                backerUserProject.UserId = _context.UsersLoggedIn.OrderByDescending(x => x.UserId).First().UserId;
+
                 await _backerUserProjectService.DonateAmount(backerUserProject);
                 //_context.Add(backerUserProject);
                 //await _context.SaveChangesAsync();

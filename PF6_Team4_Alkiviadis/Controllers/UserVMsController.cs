@@ -1,15 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PF6_Team4_Core.Data;
 using PF6_Team4_Core.Interfaces;
-
+using PF6_Team4_Core.Models;
+using PF6_Team4_Core.ViewModels;
+using System.Linq;
 
 namespace PF6_Team4_Alkiviadis.Controllers
 {
     public class UserVMsController : Controller
     {
         private readonly IUserVMService _uservmservice;
+        private readonly ApplicationDbContext _context;
 
-        public UserVMsController(IUserVMService uservmservice)
+        public UserVMsController(ApplicationDbContext context, IUserVMService uservmservice)
         {
+            _context = context;
             _uservmservice = uservmservice;
         }
 
@@ -18,8 +23,8 @@ namespace PF6_Team4_Alkiviadis.Controllers
         // GET: UserVMs
         public IActionResult Index()
         {
-            var userview = _uservmservice.GetUserVMByIdAsync();
-            return View(userview.Data.FirstName);
+            UserVM userview = _uservmservice.CreateUserVM(_context.UsersLoggedIn.OrderByDescending(x => x.UserId).First().UserId).Data;
+            return View(userview);
         }
     }
     //    // GET: UserVMs/Details/5
