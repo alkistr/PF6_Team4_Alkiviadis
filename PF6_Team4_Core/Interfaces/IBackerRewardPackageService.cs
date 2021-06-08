@@ -9,8 +9,8 @@ namespace PF6_Team4_Core.Interfaces
 {
     public interface IBackerRewardPackageService
     {
-        Task<Result<List<BackerRewardPackage>>> GetAllRewardPackagesAsync();
+        Result<List<BackerRewardPackage>> GetAllRewardPackagesAsync();
 
-        Task<Result<BackerRewardPackage>> CreateRewardPackageAsync(BackerRewardPackage backerrewardpackageoptions);
+        Task<Result<BackerRewardPackage>> CreateBackerRewardPackageAsync(BackerRewardPackage backerrewardpackageoptions);
     }
 }

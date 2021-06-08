@@ -21,6 +21,7 @@ namespace PF6_Team4_Core.Data
         public DbSet<RewardPackage> RewardPackages { set; get; }
         public DbSet<BackerUserProject> BackerUserProjects { set; get; }
         public DbSet<ProjectRewardPackage> ProjectRewardPackages { set; get; }
+        public DbSet<BackerRewardPackage> BackerRewardPackages { set; get; }
 
 
 

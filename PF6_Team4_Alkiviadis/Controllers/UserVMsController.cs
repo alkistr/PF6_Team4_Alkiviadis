@@ -23,7 +23,13 @@ namespace PF6_Team4_Alkiviadis.Controllers
         // GET: UserVMs
         public IActionResult Index()
         {
-            UserVM userview = _uservmservice.CreateUserVM(_context.UsersLoggedIn.OrderByDescending(x => x.UserId).First().UserId).Data;
+            var userview1 = _uservmservice.CreateUserVM(_context.UsersLoggedIn.OrderByDescending(x => x.UserId).Last().UserId).Data.FirstName;
+            UserVM userview = new UserVM()
+            {
+                FirstName = userview1,
+                //backeruserprojectsUserVM = userview1.backeruserprojectsUserVM.ToList(),
+                //projectsUserVM = userview1.projectsUserVM.ToList()
+            };
             return View(userview);
         }
     }

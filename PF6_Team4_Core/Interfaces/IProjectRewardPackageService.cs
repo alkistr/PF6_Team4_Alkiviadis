@@ -8,5 +8,6 @@ namespace PF6_Team4_Core.Interfaces
 {
     public interface IProjectRewardPackageService
     {
+
     }
 }

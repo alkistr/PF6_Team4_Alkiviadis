@@ -16,6 +16,8 @@ namespace PF6_Team4_Core.Interfaces
         public DbSet<BackerUserProject> BackerUserProjects { set; get; }
         public DbSet<ProjectRewardPackage> ProjectRewardPackages { set; get; }
         public DbSet<UserLoggedIn> UsersLoggedIn { set; get; }
+        public DbSet<BackerRewardPackage> BackerRewardPackages { set; get; }
+
 
         Task<int> SaveChangesAsync();
     }

@@ -20,12 +20,24 @@ namespace PF6_Team4_Core.Services
             _logger = logger;
         }
 
-        public Task<Result<BackerRewardPackage>> CreateRewardPackageAsync(BackerRewardPackage backerrewardpackageoptions)
+        public async Task<Result<BackerRewardPackage>> CreateBackerRewardPackageAsync(BackerRewardPackage backerrewardpackageoptions)
         {
-            throw new NotImplementedException();
+            var backerrewardpackages = new BackerRewardPackage
+            {
+                UserId = backerrewardpackageoptions.UserId,
+                RewardpackageId = backerrewardpackageoptions.RewardpackageId
+            };
+
+            await _context.BackerRewardPackages.AddAsync(backerrewardpackages);
+            await _context.SaveChangesAsync();
+
+            return new Result<BackerRewardPackage>
+                {
+                    Data = backerrewardpackages
+                };
         }
 
-        public Task<Result<List<BackerRewardPackage>>> GetAllRewardPackagesAsync()
+        public Result<List<BackerRewardPackage>> GetAllRewardPackagesAsync()
         {
             throw new NotImplementedException();
         }

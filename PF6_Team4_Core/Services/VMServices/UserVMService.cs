@@ -116,8 +116,8 @@ namespace PF6_Team4_Core.Services.VMServices
             {
                 UserVMId = uservm.Data.UserOptionsId,
                 FirstName = uservm.Data.FirstName,
-                projectsUserVM = projectsofcreatoruser.Data,
-                backeruserprojectsUserVM = backeruserproject.Data
+                projectsUserVM = projectsofcreatoruser.Data.ToList(),
+                backeruserprojectsUserVM = backeruserproject.Data.ToList()
             };
 
 

@@ -22,15 +22,15 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(model => item.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.projectsUserVM)
+                @Html.DisplayFor(model => item.projectsUserVM)
             </td>
             @foreach (var listitem in Model)
             {
                 <td>
-                    @Html.DisplayFor(modelItem => listitem.projectsUserVM)
+                    @Html.DisplayFor(model => listitem.projectsUserVM)
                 </td>
             }
             <td>
