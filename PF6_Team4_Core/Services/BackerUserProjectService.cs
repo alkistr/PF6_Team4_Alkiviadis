@@ -33,6 +33,8 @@ namespace PF6_Team4_Core.Services
                 AmountDonated = donateamount.AmountDonated
             };
 
+
+
             await _context.BackerUserProjects.AddAsync(newDonation);
             await _context.SaveChangesAsync();
 
@@ -41,6 +43,11 @@ namespace PF6_Team4_Core.Services
                 Data = newDonation
             };
 
+        }
+
+        public Result<BackerRewardPackage> AddRewardPackagetoBacker(decimal donatedamount)
+        {
+            throw new NotImplementedException();
         }
     }
 }

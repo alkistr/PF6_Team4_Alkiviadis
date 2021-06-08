@@ -10,5 +10,7 @@ namespace PF6_Team4_Core.Interfaces
     public interface IBackerUserProjectService
     {
         Task<Result<BackerUserProject>> DonateAmount(BackerUserProject donateamount);
+
+        Result<BackerRewardPackage> AddRewardPackagetoBacker(decimal donatedamount);
     }
 }

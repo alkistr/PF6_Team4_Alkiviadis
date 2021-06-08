@@ -15,6 +15,7 @@ namespace PF6_Team4_Alkiviadis.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IBackerUserProjectService _backerUserProjectService;
+        private readonly IBackerRewardPackageService _backerRewardPackageService;
 
         public BackerUserProjectsController(ApplicationDbContext context, IBackerUserProjectService backerUserProjectService)
         {
@@ -64,7 +65,21 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 //await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
             }
-            return View(backerUserProject);
+
+
+            var backerrewardpackageoptions = new BackerRewardPackage
+            {
+                UserId = backerUserProject.UserId,
+                RewardpackageId = _context
+                                    .RewardPackages
+                                    .Where(b => b.ProjectId == backerUserProject.ProjectId)
+                                    .Where(b => b.MaxAmountRoGetReward > backerUserProject.AmountDonated)
+                                    .Select(b => b.RewardPackageId).FirstOrDefault()
+            };
+
+            await _backerRewardPackageService.CreateBackerRewardPackageAsync(backerrewardpackageoptions);
+                            
+             return View(backerUserProject);
         }
 
              
