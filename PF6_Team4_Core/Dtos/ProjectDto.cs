@@ -17,7 +17,7 @@ namespace PF6_Team4_Core.Dtos
         public string Description { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal CurrentAmount { get; set; }
-        public Category category { get; set; } = Category.Software;
+        public Category Category { get; set; } = Category.Software;
         public List<RewardPackage> ProjectRewardPackages { get; set; }
         public IList<Post> Posts { get; set; }
         public IList<Media> Medias { get; set; }
@@ -31,7 +31,7 @@ namespace PF6_Team4_Core.Dtos
                 Title = project.Title,
                 Description = project.Description,
                 CreatorId = project.CreatorId,
-                category = project.category
+                Category = project.Category
             };
         }
 
@@ -48,7 +48,7 @@ namespace PF6_Team4_Core.Dtos
                     Title = project.Title,
                     Description = project.Description,
                     CreatorId = project.CreatorId,
-                    category = project.category
+                    Category = project.Category
                 });
             }
 

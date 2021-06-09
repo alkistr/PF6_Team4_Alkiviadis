@@ -6,23 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PF6_Team4_Core.Data;
+using PF6_Team4_Core.Dtos;
+using PF6_Team4_Core.Interfaces;
 using PF6_Team4_Core.Models;
+using PF6_Team4_Core.Models.Options.ProjectOptions;
 
 namespace PF6_Team4_Alkiviadis.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IProjectServices _projectservice;
 
-        public ProjectsController(ApplicationDbContext context)
+        public ProjectsController(ApplicationDbContext context, IProjectServices projectservice)
         {
+            _projectservice = projectservice;
             _context = context;
         }
 
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Projects.ToListAsync());
+            var allProjects = await _projectservice.GetAllProjectsAsync();
+            return View(allProjects.Data);
         }
 
         // GET: Projects/Details/5
@@ -33,14 +39,14 @@ namespace PF6_Team4_Alkiviadis.Controllers
                 return NotFound();
             }
 
-            var project = await _context.Projects
-                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            var project = await _projectservice.GetProjectByIdAsync(id.Value);
+
             if (project == null)
             {
                 return NotFound();
             }
 
-            return View(project);
+            return View(project.Data);
         }
 
         // GET: Projects/Create
@@ -54,12 +60,13 @@ namespace PF6_Team4_Alkiviadis.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectId,Title,CreatorId,Description,TotalAmount,CurrentAmount,category")] Project project)
+        public async Task<IActionResult> Create([Bind("ProjectId,Title,CreatorId,Description,TotalAmount,CurrentAmount,category")] ProjectDto project)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(project);
-                await _context.SaveChangesAsync();
+
+                await _projectservice.CreateProject(CreateProjectOptions.MapFromProductDto(project));
+
                 return RedirectToAction(nameof(Index));
             }
             return View(project);
@@ -139,15 +146,15 @@ namespace PF6_Team4_Alkiviadis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var project = await _context.Projects.FindAsync(id);
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            await _projectservice.DeleteProjectByIdAsync(id);
+
+            return NoContent();
         }
 
         private bool ProjectExists(int id)
         {
             return _context.Projects.Any(e => e.ProjectId == id);
+
         }
     }
 }

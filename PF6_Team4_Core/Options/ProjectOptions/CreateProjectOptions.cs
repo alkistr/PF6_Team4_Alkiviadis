@@ -22,7 +22,7 @@ namespace PF6_Team4_Core.Models.Options.ProjectOptions
             {
                 Title = project.Title,
                 Description = project.Description,
-                category = project.category
+                category = project.Category
             };
 
         }

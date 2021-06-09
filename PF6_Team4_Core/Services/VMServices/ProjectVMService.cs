@@ -60,7 +60,7 @@ namespace PF6_Team4_Core.Services.VMServices
             ProjectOptions viewprojectoptions = new() 
             {
                 ProjectOptionsId = viewp.ProjectId, 
-                category = viewp.category,
+                category = viewp.Category,
                 CurrentAmount = viewp.CurrentAmount,
                 TotalAmount = viewp.TotalAmount,
                 Description = viewp.Description,

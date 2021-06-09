@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PF6_Team4_Core;
+using PF6_Team4_Core.Data;
 using PF6_Team4_Core.DependencyInjections;
 using PF6_Team4_Core.Interfaces;
 using System;

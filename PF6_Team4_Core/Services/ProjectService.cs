@@ -56,7 +56,7 @@ namespace PF6_Team4_Core.Services
             {
                 Title = createProjectOptions.Title,
                 Description = createProjectOptions.Description,
-                category = createProjectOptions.category
+                Category = createProjectOptions.category
                 
                 //MaxAmountRoGetReward = rewardpackageoptions.MaxAmountRoGetReward,
                 //RewardDescription = rewardpackageoptions.RewardDescription,
@@ -150,7 +150,7 @@ namespace PF6_Team4_Core.Services
 
                 var projects = await _context
                     .Projects
-                    .Where(x => x.category.Equals(searchProjectOptions.CategoryId))
+                    .Where(x => x.Category.Equals(searchProjectOptions.CategoryId))
 
                     .ToListAsync();
 
